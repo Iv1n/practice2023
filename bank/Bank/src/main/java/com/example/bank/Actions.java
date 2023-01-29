@@ -3,9 +3,15 @@ package com.example.bank;
 import java.util.Date;
 
 public class Actions {
-    public int id,id_client;
-    public double deposit, withdrawal,reminder;
-    public Date date;
+    private int id;
+    public static int id_client;
+    private double deposit, withdrawal,reminder;
+    private Date date;
+
+    public Actions(double reminder, Date date) {
+        this.reminder = reminder;
+        this.date = date;
+    }
 
     public Actions(int id, int id_client, double deposit, double withdrawal, double reminder, Date date) {
         this.id = id;
@@ -15,6 +21,7 @@ public class Actions {
         this.reminder = reminder;
         this.date = date;
     }
+
 
     public int getId() {
         return id;
@@ -56,8 +63,8 @@ public class Actions {
         this.reminder = reminder;
     }
 
-    public Date getDate() {
-        return date;
+    public java.sql.Date getDate() {
+        return (java.sql.Date) date;
     }
 
     public void setDate(Date date) {

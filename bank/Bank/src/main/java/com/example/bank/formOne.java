@@ -1,19 +1,22 @@
 package com.example.bank;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import com.example.bank.Actions;
-import com.example.bank.Clients;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class formOne {
 
@@ -43,9 +46,24 @@ public class formOne {
 
     @FXML
     void initialize() {
-date();
-setD();
+        date();
+        setD();
+        addButton.setOnAction(event -> {
+            addButton.getScene();
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("addUser.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, 320, 170));
+            stage.setResizable(false);
+            stage.show();
+        });
     }
+
 
     private void date(){
         ResultSet user = dataBase.getL();

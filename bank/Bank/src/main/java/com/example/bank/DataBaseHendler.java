@@ -2,17 +2,19 @@ package com.example.bank;
 
 import java.sql.*;
 
+import static com.example.bank.Actions.id_client;
 public class DataBaseHendler extends Config{
 
     private static Connection con;
     private static ResultSet rs;
 
+    private static Statement stmt;
+    private PreparedStatement preparedStatement;
+
     public Connection getDbConnection() {
         try {
             con = DriverManager.getConnection(url, user, password);
-            System.out.println("Connection: yes");
         } catch (SQLException e) {
-            System.out.println("Connection: no");
             throw new RuntimeException(e);
         }
         return con;
@@ -30,5 +32,41 @@ public class DataBaseHendler extends Config{
         return rs;
     }
 
+    public  void signClients(Clients clients){
+        String insert = "insert into bank.clients (account,name) values(?,?)";
+        try {
+            preparedStatement = getDbConnection().prepareStatement(insert);
+            preparedStatement.setString(1, clients.getAccount());
+            preparedStatement.setString(2,clients.getName());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    public void infUser(String account,String name){
+        try{
+            getDbConnection();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("select id from bank.clients where account=" + "'" + account +
+                    "'" + " and name=" + "'" + name + "'");
+            while (rs.next()){
+                id_client = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addUActions(Actions actions){
+        String insert = "insert into bank.actions (id_client,deposit,withdrawl,reminder,op_date) values (" + id_client + ",0,0,?,?)";
+        try{
+            preparedStatement = getDbConnection().prepareStatement(insert);
+            preparedStatement.setDouble(1,actions.getReminder());
+            preparedStatement.setDate(2, actions.getDate());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

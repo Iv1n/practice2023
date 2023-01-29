@@ -11,8 +11,7 @@ public class Clients {
         this.name = name;
     }
 
-    public Clients(int id, String account, String name) {
-        this.id = id;
+    public Clients(String account, String name) {
         this.account = account;
         this.name = name;
     }
