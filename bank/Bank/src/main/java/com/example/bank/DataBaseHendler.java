@@ -58,12 +58,10 @@ public class DataBaseHendler extends Config{
         }
     }
 
-    public void addUActions(Actions actions){
-        String insert = "insert into bank.actions (id_client,deposit,withdrawl,reminder,op_date) values (" + id_client + ",0,0,?,?)";
+    public void addUActions(int id_client, Double remainde, String date){
+        String insert = "insert into bank.actions (id_client,deposit,withdrawl,reminder,op_date) values (" + id_client + ",0,0," + remainde + "," + "'" + date +"')";
         try{
             preparedStatement = getDbConnection().prepareStatement(insert);
-            preparedStatement.setDouble(1,actions.getReminder());
-            preparedStatement.setDate(2, actions.getDate());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

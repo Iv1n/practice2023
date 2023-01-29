@@ -49,7 +49,7 @@ public class formOne {
         date();
         setD();
         addButton.setOnAction(event -> {
-            addButton.getScene();
+            addButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             Parent root = null;
             try {
