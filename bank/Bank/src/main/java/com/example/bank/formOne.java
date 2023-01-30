@@ -16,7 +16,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class formOne {
 
@@ -28,6 +30,9 @@ public class formOne {
 
     @FXML
     private Button addButton;
+
+    @FXML
+    private Button open;
 
     @FXML
     private TableColumn<Clients, String> check;
@@ -44,8 +49,10 @@ public class formOne {
     DataBaseHendler dataBase = new DataBaseHendler();
     private final ObservableList<Clients> data = FXCollections.observableArrayList();
 
+
     @FXML
     void initialize() {
+        openAction();
         date();
         setD();
         addButton.setOnAction(event -> {
@@ -64,15 +71,40 @@ public class formOne {
         });
     }
 
+    private void openAction() {
+        open.setOnAction(e -> {
+            open.getScene().getWindow().hide();
+            Clients sd = table.getSelectionModel().getSelectedItem();
+            Clients.acc = sd.account;
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("action.fxml"));
+                Parent root = fxmlLoader.load();
+                Action contoller = fxmlLoader.getController();
+                contoller.setDetails(table.getSelectionModel().getSelectedItem());
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.DECORATED);
+                stage.setResizable(false);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.initStyle(StageStyle.UNIFIED);
+                stage.setTitle("Редактирование");
+                stage.setScene(new Scene(root));
+                stage.showAndWait();
+                table.getItems().clear();
+                date();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+    }
 
-    private void date(){
+    private void date() {
         ResultSet user = dataBase.getL();
         try {
-            while (user.next()){
+            while (user.next()) {
                 Clients clients = new Clients(
-                user.getString(1),
-                user.getString(2),
-                user.getDouble(3));
+                        user.getString(1),
+                        user.getString(2),
+                        user.getDouble(3));
                 data.add(clients);
             }
         } catch (SQLException e) {
@@ -80,7 +112,7 @@ public class formOne {
         }
     }
 
-    private void setD(){
+    private void setD() {
         check.setCellValueFactory(new PropertyValueFactory<>("account"));
         initials.setCellValueFactory(new PropertyValueFactory<>("name"));
         remainder.setCellValueFactory(new PropertyValueFactory<>("reminder"));

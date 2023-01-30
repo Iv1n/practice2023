@@ -3,7 +3,13 @@ package com.example.bank;
 public class Clients {
     public int id;
     public double reminder;
-    public String account,name;
+
+    public String account;
+
+    public static String acc;
+    public String name;
+
+
 
     public Clients(String account, String name, double reminder) {
         this.reminder = reminder;
@@ -14,6 +20,10 @@ public class Clients {
     public Clients(String account, String name) {
         this.account = account;
         this.name = name;
+    }
+
+    public void setReminder(double reminder) {
+        this.reminder = reminder;
     }
 
     public int getId() {
@@ -31,7 +41,6 @@ public class Clients {
     public void setAccount(String account) {
         this.account = account;
     }
-
     public String getName() {
         return name;
     }
@@ -46,5 +55,13 @@ public class Clients {
 
     public void setReminder(Double reminder) {
         this.reminder = reminder;
+    }
+
+    public static String getAcc() {
+        return acc;
+    }
+
+    public static void setAcc(String acc) {
+        Clients.acc = acc;
     }
 }

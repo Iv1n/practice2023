@@ -5,23 +5,16 @@ import java.util.Date;
 public class Actions {
     private int id;
     public static int id_client;
-    private double deposit, withdrawal,reminder;
-    private Date date;
+    private double deposit, withdrawal, reminder;
+    private String date;
 
-    public Actions(double reminder, Date date) {
-        this.reminder = reminder;
-        this.date = date;
-    }
 
-    public Actions(int id, int id_client, double deposit, double withdrawal, double reminder, Date date) {
-        this.id = id;
-        this.id_client = id_client;
+    public Actions(String date, double deposit, double withdrawal, double reminder) {
         this.deposit = deposit;
         this.withdrawal = withdrawal;
         this.reminder = reminder;
         this.date = date;
     }
-
 
     public int getId() {
         return id;
@@ -31,12 +24,12 @@ public class Actions {
         this.id = id;
     }
 
-    public int getId_client() {
+    public static int getId_client() {
         return id_client;
     }
 
-    public void setId_client(int id_client) {
-        this.id_client = id_client;
+    public static void setId_client(int id_client) {
+        Actions.id_client = id_client;
     }
 
     public double getDeposit() {
@@ -63,11 +56,11 @@ public class Actions {
         this.reminder = reminder;
     }
 
-    public java.sql.Date getDate() {
-        return (java.sql.Date) date;
+    public String getDate() {
+        return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,6 +39,7 @@ public class AddUser {
     private TextField sum;
 
     DataBaseHendler dbHandler = new DataBaseHendler();
+
     @FXML
     void initialize() {
         okButton.setOnAction(event -> {
@@ -46,28 +48,29 @@ public class AddUser {
             addUAc();
             okButton.getScene().getWindow().hide();
             nextWin();
-            });
+        });
         cancellation.setOnAction(event -> {
             cancellation.getScene().getWindow().hide();
-           nextWin();
+            nextWin();
         });
     }
-    private void addUser(){
+
+    private void addUser() {
         String account = check.getText();
         String name = nameU.getText();
-        Clients clients = new Clients(account,name);
+        Clients clients = new Clients(account, name);
         dbHandler.signClients(clients);
     }
 
-    private void addUAc(){
+    private void addUAc() {
         Double reminder = Double.valueOf(sum.getText());
         Calendar calendar = Calendar.getInstance();
         DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD-HH-mm-ss");
         String date = formatter.format(calendar.getTime());
-        dbHandler.addUActions(Actions.id_client,reminder,date);
+        dbHandler.addUActions(Actions.id_client, reminder, date);
     }
 
-    private void nextWin(){
+    private void nextWin() {
         FXMLLoader loader = new FXMLLoader();
         Parent root = null;
         try {
