@@ -1,6 +1,5 @@
 package com.example.bank;
 
-import java.util.Date;
 
 public class Actions {
     private int id;
@@ -15,6 +14,8 @@ public class Actions {
         this.reminder = reminder;
         this.date = date;
     }
+
+
 
     public int getId() {
         return id;

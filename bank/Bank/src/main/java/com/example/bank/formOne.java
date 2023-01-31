@@ -86,7 +86,7 @@ public class formOne {
                 stage.setResizable(false);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.initStyle(StageStyle.UNIFIED);
-                stage.setTitle("Редактирование");
+                stage.setTitle("Детализация");
                 stage.setScene(new Scene(root));
                 stage.showAndWait();
                 table.getItems().clear();

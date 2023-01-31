@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -30,6 +29,9 @@ public class Action {
 
     @FXML
     private TextField account;
+
+    @FXML
+    private Button backButton;
 
     @FXML
     private Button addButton;
@@ -60,8 +62,9 @@ public class Action {
         System.out.println(Clients.acc);
         dataMore();
         setMore();
-        addButton.setOnAction(event -> {
-            addButton.getScene().getWindow().hide();
+        addOp();
+        backButton.setOnAction(event -> {
+            backButton.getScene().getWindow().hide();
             FXMLLoader loader = new FXMLLoader();
             Parent root = null;
             try {
@@ -89,8 +92,6 @@ public class Action {
         table.setItems(data);
     }
 
-
-
     private void dataMore(){
     ResultSet mores = dataBase.getMore(Clients.acc);
     try {
@@ -106,5 +107,22 @@ public class Action {
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }
+    }
+
+    private void addOp() {
+        addButton.setOnAction(event -> {
+            addButton.getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            Parent root = null;
+            try {
+                root = FXMLLoader.load(getClass().getResource("addop.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root, 600, 400));
+            stage.setResizable(false);
+            stage.show();
+        });
     }
 }

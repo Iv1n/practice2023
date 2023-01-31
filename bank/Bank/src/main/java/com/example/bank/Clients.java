@@ -6,6 +6,7 @@ public class Clients {
 
     public String account;
 
+    public static String na;
     public static String acc;
     public String name;
 
@@ -19,6 +20,10 @@ public class Clients {
 
     public Clients(String account, String name) {
         this.account = account;
+        this.name = name;
+    }
+
+    public Clients(String name) {
         this.name = name;
     }
 
@@ -63,5 +68,13 @@ public class Clients {
 
     public static void setAcc(String acc) {
         Clients.acc = acc;
+    }
+
+    public static String getNa() {
+        return na;
+    }
+
+    public static void setNa(String na) {
+        Clients.na = na;
     }
 }

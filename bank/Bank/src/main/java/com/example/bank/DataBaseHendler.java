@@ -3,7 +3,7 @@ package com.example.bank;
 import java.sql.*;
 
 import static com.example.bank.Actions.id_client;
-import static com.example.bank.Clients.acc;
+import static com.example.bank.Clients.na;
 
 public class DataBaseHendler extends Config {
 
@@ -62,8 +62,6 @@ public class DataBaseHendler extends Config {
         return rs;
     }
 
-
-
     public void infUser(String account, String name) {
         try {
             getDbConnection();
@@ -72,6 +70,20 @@ public class DataBaseHendler extends Config {
                     "'" + " and name=" + "'" + name + "'");
             while (rs.next()) {
                 id_client = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setName(String nme){
+        try {
+            getDbConnection();
+            stmt = con.createStatement();
+            rs = stmt.executeQuery("SELECT name from bank.clients WHERE account = '" + nme + "'");
+            while (rs.next()){
+                na = rs.getString(1);
+                System.out.println(Clients.na);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
