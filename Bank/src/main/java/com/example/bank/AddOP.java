@@ -80,7 +80,7 @@ public class AddOP {
                         okButton.setVisible(true);
                         okButton.setOnAction(event1 -> {
                             Calendar calendar = Calendar.getInstance();
-                            DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD-HH-mm-ss");
+                            DateFormat formatter = new SimpleDateFormat("YYYY-MM-dd-HH-mm-ss");
                             String date = formatter.format(calendar.getTime());
                             int id_c = Actions.id_client;
                             dataBase.transaction(id_c, deposit, withdrawl, reminder, date);
@@ -113,7 +113,7 @@ public class AddOP {
                         okButton.setVisible(true);
                         okButton.setOnAction(event1 -> {
                             Calendar calendar = Calendar.getInstance();
-                            DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD-HH-mm-ss");
+                            DateFormat formatter = new SimpleDateFormat("YYYY-MM-dd-HH-mm-ss");
                             String date = formatter.format(calendar.getTime());
                             int id_c = Actions.id_client;
                             dataBase.transaction(id_c, deposit, withdrawl, reminder, date);
@@ -152,11 +152,11 @@ public class AddOP {
     private void loadDate(){
         account.setText(Clients.acc);
         Calendar calendar = Calendar.getInstance();
-        DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD-HH-mm-ss");
+        DateFormat formatter = new SimpleDateFormat("YYYY-MM-dd-HH-mm-ss");
         String date = formatter.format(calendar.getTime());
 
         Calendar calendar1 = Calendar.getInstance();
-        DateFormat format = new SimpleDateFormat("YYYY-MM-DD");
+        DateFormat format = new SimpleDateFormat("YYYY-MM-dd");
         String date1 = format.format(calendar1.getTime());
         op_date.setText(date1);}
 

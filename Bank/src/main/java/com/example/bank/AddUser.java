@@ -64,9 +64,11 @@ public class AddUser {
 
     private void addUAc() {
         Double reminder = Double.valueOf(sum.getText());
+
         Calendar calendar = Calendar.getInstance();
-        DateFormat formatter = new SimpleDateFormat("YYYY-MM-DD-HH-mm-ss");
+        DateFormat formatter = new SimpleDateFormat("YYYY-MM-dd-HH-mm-ss");
         String date = formatter.format(calendar.getTime());
+        System.out.println(date);
         dbHandler.addUActions(Actions.id_client, reminder, date);
     }
 

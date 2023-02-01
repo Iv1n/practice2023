@@ -15,7 +15,7 @@
       <Text layoutX="16.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Сумма:" />
       <Text layoutX="18.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Остаток:" />
       <Button fx:id="okButton" layoutX="27.0" layoutY="352.0" mnemonicParsing="false" text="OK" />
-      <Button fx:id="chancelButton" layoutX="95.0" layoutY="352.0" mnemonicParsing="false" text="Chancel" />
+      <Button fx:id="chancelButton" layoutX="95.0" layoutY="352.0" mnemonicParsing="false" text="Назад" />
       <TextField fx:id="account" editable="false" layoutX="60.0" layoutY="15.0" />
       <TextField fx:id="name" editable="false" layoutX="281.0" layoutY="15.0" prefHeight="25.0" prefWidth="260.0" />
       <TextField fx:id="op_date" editable="false" layoutX="60.0" layoutY="60.0" />
